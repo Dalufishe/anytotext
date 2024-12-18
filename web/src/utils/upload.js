@@ -1,5 +1,5 @@
 export async function uploadPDF(file) {
-  const url = process.env.API_ENDPOINT + "/convert";
+  const url = process.env.NEXT_PUBLIC_API_ENDPOINT + "/convert";
 
   if (!file) {
     throw new Error("No file provided");
