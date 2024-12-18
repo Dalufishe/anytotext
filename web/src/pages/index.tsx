@@ -67,7 +67,7 @@ export default function Home() {
               src="../icon/com.svg"
               alt="logo"
               style={{
-                marginLeft: "-10px", // 與文字的間距
+                marginLeft: "-10px", // Spacing between text and image
                 width: "40px",
                 height: "40px",
               }}
@@ -76,7 +76,6 @@ export default function Home() {
         </header>
 
         <section
-
           style={styles.section}
           onDragOver={(e) => e.preventDefault()}
           onDrop={loading ? undefined : handleDrop}
@@ -107,18 +106,18 @@ export default function Home() {
             </div>
             <div style={styles.textInfo}>
               <div style={styles.uploadText}>
-                拖入或点击上传按钮上传文件
+                Drag and drop files or click the upload button
               </div>
               <div style={styles.supportedText}>
-                目前支持 PDF(.pdf)、PowerPoint(.pptx)、Word(.docx)、Excel(.xlsx)、图片(EXIF/OCR)、
-                音频(EXIF/语音转文字)、网页(HTML) 以及其他文字内容
+                Currently supports PDF (.pdf), PowerPoint (.pptx), Word (.docx), Excel (.xlsx), images (EXIF/OCR),
+                audio (EXIF/speech-to-text), web pages (HTML), and other text content
               </div>
             </div>
             <button
               style={{ ...styles.button, ...styles.uploadButton }}
               onClick={loading ? undefined : handleButtonClick}
             >
-              {loading ? "Processing... Please wait..." : "上传"}
+              {loading ? "Processing... Please wait..." : "Upload"}
             </button>
           </div>
         </section>
@@ -132,7 +131,7 @@ export default function Home() {
                 style={{ ...styles.button, ...styles.downloadButton }}
                 onClick={handleDownload}
               >
-                下载
+                Download
               </button>
             </div>
             <article style={styles.article}>
