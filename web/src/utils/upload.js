@@ -1,5 +1,5 @@
 export async function uploadPDF(file) {
-  const url = "http://127.0.0.1:5000/convert";
+  const url = process.env.API_ENDPOINT + "/convert";
 
   if (!file) {
     throw new Error("No file provided");
