@@ -145,7 +145,7 @@ export default function Home() {
             marginBottom: "20px",
           }}
         >
-          Convert PDF, PPT, DOC to Text Easily and Quickly
+          Convert PDF, PowerPoint, and Word to Text Easily and Quickly
         </h2>
       </header>
       <section

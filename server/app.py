@@ -49,11 +49,11 @@ def convert_file():
             return jsonify({"error": "No selected file"}), 400
 
         # Validate file extension
-        if not file.filename.lower().endswith((".pdf", ".ppt", ".pptx", ".docx")):
+        if not file.filename.lower().endswith((".pdf", ".ppt", ".pptx", ".docx", ".xls", ".xlsx")):
             return (
                 jsonify(
                     {
-                        "error": "Invalid file type. Supported types are PDF, PPT, PPTX, DOCX."
+                        "error": "Invalid file type. Supported types are PDF, PPT, PPTX, DOCX, XLS, XLSX."
                     }
                 ),
                 400,
