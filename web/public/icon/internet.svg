@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_15_8)">
+<circle cx="32" cy="32" r="30" stroke="#2BB5D8" stroke-width="4"/>
+<ellipse cx="32" cy="32" rx="18" ry="30" stroke="#2BB5D8" stroke-width="4"/>
+<path d="M32 3V63" stroke="#2BB5D8" stroke-width="4"/>
+<path d="M62 33L2 33" stroke="#2BB5D8" stroke-width="4"/>
+<path d="M57 18L7 18" stroke="#2BB5D8" stroke-width="4"/>
+<path d="M57 48H7" stroke="#2BB5D8" stroke-width="4"/>
+</g>
+<defs>
+<clipPath id="clip0_15_8">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>
