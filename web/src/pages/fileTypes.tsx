@@ -33,7 +33,7 @@ export const fileTypes: Record<FileTypeKey, {
     shadow: "0px 2px 8px rgba(255, 87, 34, 0.25)", // 橘色陰影
     labelColor: "#ff5722", // 橘色文字
     borderColor: "rgba(249, 92, 92, 0.4)", // 橘色邊框
-    label: "POWERPOINT",
+    label: "PPT",
   },
   image: {
     gradient: "linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 251, 244, 1))", // 黃色漸層
