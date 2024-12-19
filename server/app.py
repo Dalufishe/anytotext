@@ -4,10 +4,16 @@ import time
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from markitdown import MarkItDown
+from openai import OpenAI
+
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
-markitdown = MarkItDown()
+client = OpenAI(
+    api_key=""
+)
+markitdown = MarkItDown(llm_client=client, llm_model="gpt-4o")
+
 
 UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "outputs"
@@ -49,15 +55,15 @@ def convert_file():
             return jsonify({"error": "No selected file"}), 400
 
         # Validate file extension
-        if not file.filename.lower().endswith((".pdf", ".ppt", ".pptx", ".docx", ".xls", ".xlsx")):
-            return (
-                jsonify(
-                    {
-                        "error": "Invalid file type. Supported types are PDF, PPT, PPTX, DOCX, XLS, XLSX."
-                    }
-                ),
-                400,
-            )
+        # if not file.filename.lower().endswith((".pdf", ".ppt", ".pptx", ".docx", ".xls", ".xlsx")):
+        #     return (
+        #         jsonify(
+        #             {
+        #                 "error": "Invalid file type. Supported types are PDF, PPT, PPTX, DOCX, XLS, XLSX."
+        #             }
+        #         ),
+        #         400,
+        #     )
 
         # 生成唯一檔案名稱
         unique_filename = generate_unique_filename(file.stream, file.filename)

@@ -80,7 +80,7 @@ export default function Home() {
         <center>
           <div className="text-4xl font-bold inline-flex items-center mb-6">
             AnyToText
-            <img alt="logo" className="mt-4 w-8 h-8" src="../icon/com.svg" />
+            <img alt="logo" className="mt-4 w-10 h-10" src="../icon/com.svg" />
           </div>
           {/* <Tabs /> */}
         </center>
@@ -132,7 +132,7 @@ export default function Home() {
               </p>
             </div>
             <button
-              className={`text-white py-2 px-4 rounded focus:outline-none focus:ring-2 ${getButtonStyles()} ${
+              className={`text-white py-2 px-4 mt-2 rounded focus:outline-none focus:ring-2 ${getButtonStyles()} ${
                 loading ? "cursor-not-allowed" : ""
               }`}
               onClick={loading ? undefined : handleButtonClick}

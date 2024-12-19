@@ -49,20 +49,20 @@ export const fileTypes: Record<FileTypeKey, {
     borderColor: "rgba(167, 66, 255, 0.4)", // 紫色邊框
     label: "MUSIC",
   },
-  web: {
-    gradient: "linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(244, 254, 255, 1))", // 青色漸層
-    shadow: "0px 2px 8px rgba(43, 181, 216, 0.25)", // 青色陰影
-    labelColor: "#2bb5d8", // 青色文字
-    borderColor: "rgba(43, 181, 216, 0.4)", // 青色邊框
-    label: "WEB",
-  },
-  text: {
-    gradient: "linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(244, 244, 244, 1))", // 灰色漸層
-    shadow: "0px 2px 8px rgba(98, 98, 98, 0.25)", // 灰色陰影
-    labelColor: "#626262", // 灰色文字
-    borderColor: "rgba(170, 170, 170, 0.4)", // 灰色邊框
-    label: "TEXT",
-  },
+  // web: {
+  //   gradient: "linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(244, 254, 255, 1))", // 青色漸層
+  //   shadow: "0px 2px 8px rgba(43, 181, 216, 0.25)", // 青色陰影
+  //   labelColor: "#2bb5d8", // 青色文字
+  //   borderColor: "rgba(43, 181, 216, 0.4)", // 青色邊框
+  //   label: "WEB",
+  // },
+  // text: {
+  //   gradient: "linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(244, 244, 244, 1))", // 灰色漸層
+  //   shadow: "0px 2px 8px rgba(98, 98, 98, 0.25)", // 灰色陰影
+  //   labelColor: "#626262", // 灰色文字
+  //   borderColor: "rgba(170, 170, 170, 0.4)", // 灰色邊框
+  //   label: "TEXT",
+  // },
 };
 
 export const icons: Array<FileTypeKey> = Object.keys(fileTypes) as Array<FileTypeKey>;
