@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Sidebar from "@/components/index/Sidebar";
 import Header from "@/components/index/Header";
@@ -13,6 +13,21 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState("");
   const [fileContent, setFileContent] = useState("");
   const [APIKey, setAPIKey] = useState("");
+
+  // 初始化時從 localStorage 獲取 APIKey
+  useEffect(() => {
+    const storedKey = localStorage.getItem("APIKey");
+    if (storedKey) {
+      setAPIKey(storedKey);
+    }
+  }, []);
+
+  // 每當 APIKey 改變時，同步更新到 localStorage
+  useEffect(() => {
+    if (APIKey) {
+      localStorage.setItem("APIKey", APIKey);
+    }
+  }, [APIKey]);
 
   const handleFileUpload = (file: File): void => {
     setLoading(true);
@@ -93,7 +108,9 @@ export default function Home() {
           onFileDrop={handleDrop}
         />
         {/* Error Message */}
-        {errorMessage && <div className="mt-4 text-errorText">{errorMessage}</div>}
+        {errorMessage && (
+          <div className="mt-4 text-errorText">{errorMessage}</div>
+        )}
         {/* File Content Viewer */}
         {fileContent && (
           <FileContentViewer
@@ -102,6 +119,22 @@ export default function Home() {
             onCopy={() => navigator.clipboard.writeText(fileContent)}
           />
         )}
+        <footer className="mt-8 text-gray-500 text-sm flex flex-col justify-center items-center">
+          {/* <p>
+            Note: Conversion results may vary for files with complex layouts,
+            images, or custom fonts.
+          </p> */}
+          <p>
+            Developed by{" "}
+            <a href="https://github.com/Dalufishe" className="underline"  target="_blank">
+              Dalufishe
+            </a>{" "}
+            & CatTimothy. For inquiries, please contact:{" "}
+            <a href="mailto:easonlu@dimotech.com.tw" className="underline" target="_blank">
+              easonlu@dimotech.com.tw
+            </a>
+          </p>
+        </footer>
       </main>
       <Sidebar />
     </div>

@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     <header className="text-center mb-6">
       <div className="text-4xl font-bold inline-flex items-center">
         AnyToText
-        <img alt="logo" className="mt-4 h-11" src="../icon/com.svg" />
+        <img alt="logo" className="mt-5 w-10" src="../icon/com.svg" />
       </div>
     </header>
   );
