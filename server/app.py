@@ -53,10 +53,10 @@ def convert_file():
         print(api_key)
         if api_key != "":
             # Validate the API Key
-            if not validate_api_key(api_key):
-                return jsonify({"error": "Invalid API Key"}), 401
-            else:
-                client = OpenAI(api_key=api_key)
+            # if not validate_api_key(api_key):
+            #     return jsonify({"error": "Invalid API Key"}), 401
+            # else:
+            client = OpenAI(api_key=api_key)
         else:
             client = OpenAI(api_key="")
         markitdown = MarkItDown(llm_client=client, llm_model="gpt-4o")

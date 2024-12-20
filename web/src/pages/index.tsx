@@ -5,7 +5,7 @@ import Header from "@/components/index/Header";
 import FileUploadSection from "@/components/index/FileUploadSection";
 import FileContentViewer from "@/components/index/FileContentViewer";
 import APIKeyContainer from "@/components/index/APIKeyContainer";
-
+import I18nSelector from "@/components/index/i18nSelector";
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -13,7 +13,6 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState("");
   const [fileContent, setFileContent] = useState("");
   const [APIKey, setAPIKey] = useState("");
-  // setAPIKey("");
 
   const handleFileUpload = (file: File): void => {
     setLoading(true);
@@ -82,8 +81,10 @@ export default function Home() {
           onToggle={() => setIsVisible(!isVisible)}
           onAPIKeyContainerChange={(key: string) => setAPIKey(key)}
         />
-        {/* Header */}
+        {/* Title */}
         <Header />
+        {/* I18n Selector */}
+        {/* <I18nSelector/> */}
         {/* File Upload Section */}
         <FileUploadSection
           loading={loading}

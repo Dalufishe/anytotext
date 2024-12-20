@@ -60,12 +60,14 @@ const FileUploadSection: React.FC<FileUploadSectionProps> = ({
             (EXIF/OCR), audio (EXIF/speech-to-text), web pages (HTML), and other text content
           </p>
         </div>
-        <Button
-          label={loading ? "Converting..." : complete ? "Conversion Complete" : "Upload"}
-          onClick={onUploadClick}
-          isDisabled={loading}
-          styleType={loading ? "converting" : complete ? "complete" : "default"}
-        />
+        <div className="pt-6">
+          <Button
+            label={loading ? "Converting..." : complete ? "Conversion Complete" : "Upload"}
+            onClick={onUploadClick}
+            isDisabled={loading}
+            styleType={loading ? "converting" : complete ? "complete" : "default"}
+          />
+        </div>
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ type Tab = {
   label: string;
 };
 
-const Tabs: React.FC = () => {
+const I18nSelector: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("en");
 
   const tabs: Tab[] = [
@@ -38,4 +38,4 @@ const Tabs: React.FC = () => {
   );
 };
 
-export default Tabs;
+export default I18nSelector;
