@@ -17,15 +17,21 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 def generate_unique_filename(file_stream, filename):
-    """
-    基於時間戳和檔案內容 MD5 哈希值生成唯一檔案名稱
-    """
     file_stream.seek(0)  # 確保從檔案頭部讀取
     md5_hash = hashlib.md5(file_stream.read()).hexdigest()
     file_stream.seek(0)  # 重置檔案游標
     ext = filename.rsplit(".", 1)[-1].lower()
     timestamp = int(time.time())  # 獲取時間戳
     unique_filename = f"{md5_hash}_{timestamp}.{ext}"
+    
+    # 獲取檔案大小
+    file_size = os.fstat(file_stream.fileno()).st_size
+    file_size_mb = file_size / (1024 * 1024)  # 將檔案大小轉換為 MB
+
+    # 紀錄轉換日誌
+    with open("log.txt", "a") as log_file:
+        log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} - Filename: {filename}, Size: {file_size_mb:.2f} MB\n")
+    
     return unique_filename
 
 def validate_api_key(api_key):
