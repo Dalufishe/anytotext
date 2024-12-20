@@ -7,3 +7,35 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
+/* 密碼輸入框樣式 */
+.text-security {
+  -webkit-text-security: disc;
+}
+
+
+
+.dialog-up {
+  margin-bottom: 10px;
+}
+.dialog-up::before {
+  /* 讓底部邊框有顏色，其他三邊透明 */
+  border-color: transparent transparent white transparent;
+  border-style: solid;
+
+  /* 調整邊框大小，形成倒三角形 */
+  border-width: 1px 8px 13px 8px;
+
+  top: -13px; /* 調整三角形的相對位置 */
+  right: 30px; /* 調整三角形的水平位置 */
+  
+  /* 必須指定，才能顯示內容 */
+  content: "";
+
+  /* 不需要設定其他屬性，這樣就可以正常顯示倒三角形 */
+  position: absolute;
+  width: 0;
+  height: 0;
+  
+}

@@ -1,4 +1,4 @@
-export type FileTypeKey = "pdf" | "word" | "excel" | "powerpoint" | "image" | "music" | "web" | "text";
+export type FileTypeKey = "pdf" | "word" | "excel" | "powerpoint" | "image" | "music" ;//| "web" | "text";
 
 export const fileTypes: Record<FileTypeKey, {
   gradient: string;
@@ -65,4 +65,4 @@ export const fileTypes: Record<FileTypeKey, {
   // },
 };
 
-export const icons: Array<FileTypeKey> = Object.keys(fileTypes) as Array<FileTypeKey>;
+export default Object.keys(fileTypes) as Array<FileTypeKey>;

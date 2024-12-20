@@ -1,4 +1,4 @@
-export async function uploadPDF(file) {
+export async function uploadPDF(file,APIKey) {
   const url = process.env.NEXT_PUBLIC_API_ENDPOINT + "/convert";
 
   if (!file) {
@@ -7,6 +7,7 @@ export async function uploadPDF(file) {
 
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("APIKey", APIKey);
 
   try {
     const response = await fetch(url, {

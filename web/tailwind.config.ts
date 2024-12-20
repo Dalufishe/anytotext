@@ -19,8 +19,9 @@ export default {
       },
       backgroundImage: {
         'upload-radial-gradient': 'radial-gradient(circle, rgba(82, 140, 238, 1), rgba(51, 111, 214, 1))',
-        // 'converting-radial-gradient': 'radial-gradient(circle, rgba(195, 243, 201, 1), rgba(147, 237, 151, 1))',
+        'converting-radial-gradient': 'radial-gradient(circle, rgba(195, 243, 201, 1), rgba(147, 237, 151, 1))',
         'complete-radial-gradient': 'radial-gradient(circle, rgba(195, 243, 201, 1), rgba(147, 237, 151, 1))',
+        'normal-radial-gradient': 'radial-gradient(circle, rgba(255, 255, 255, 1), rgba(240, 240, 240, 1))',
       },
     },
   },

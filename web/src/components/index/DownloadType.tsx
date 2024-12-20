@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import Button from './Button';
 
 type Tab = {
   label: string;
   content: string;
 };
 
-interface DropdownTabsProps {
+interface DownloadTypeProps {
   tabs: Tab[];
 }
 
-const DropdownTabs: React.FC<DropdownTabsProps> = ({ tabs }) => {
+const DownloadType: React.FC<DownloadTypeProps> = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -23,14 +24,14 @@ const DropdownTabs: React.FC<DropdownTabsProps> = ({ tabs }) => {
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none"
+        className="bg-white text-black py-2 px-4 rounded-md border-2 focus:outline-none"
       >
         {tabs[activeTab].label}
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="w-full origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1">
             {tabs.map((tab, index) => (
               <button
@@ -50,4 +51,4 @@ const DropdownTabs: React.FC<DropdownTabsProps> = ({ tabs }) => {
   );
 };
 
-export default DropdownTabs;
+export default DownloadType;

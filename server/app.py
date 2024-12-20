@@ -6,14 +6,8 @@ from flask_cors import CORS
 from markitdown import MarkItDown
 from openai import OpenAI
 
-
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
-client = OpenAI(
-    api_key=""
-)
-markitdown = MarkItDown(llm_client=client, llm_model="gpt-4o")
-
 
 UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "outputs"
@@ -22,24 +16,31 @@ OUTPUT_FOLDER = "outputs"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
-
 def generate_unique_filename(file_stream, filename):
     """
     基於時間戳和檔案內容 MD5 哈希值生成唯一檔案名稱
     """
-    # 讀取檔案內容並計算 MD5
     file_stream.seek(0)  # 確保從檔案頭部讀取
     md5_hash = hashlib.md5(file_stream.read()).hexdigest()
     file_stream.seek(0)  # 重置檔案游標
-
-    # 提取原始副檔名
     ext = filename.rsplit(".", 1)[-1].lower()
     timestamp = int(time.time())  # 獲取時間戳
-
-    # 組合新檔案名稱: MD5 哈希 + 時間戳
     unique_filename = f"{md5_hash}_{timestamp}.{ext}"
     return unique_filename
 
+def validate_api_key(api_key):
+    """
+    驗證 API Key 是否有效
+    """
+    try:
+        # 嘗試用 OpenAI API 驗證 API Key
+        client = OpenAI(api_key=api_key)
+        response = client.models.list()  # 測試列出模型
+        if response and "data" in response:
+            return True
+    except Exception as e:
+        print(f"API Key validation failed: {str(e)}")
+    return False
 
 @app.route("/convert", methods=["POST"])
 def convert_file():
@@ -47,28 +48,26 @@ def convert_file():
         # Check if the request contains a file
         if "file" not in request.files:
             return jsonify({"error": "No file part in the request"}), 400
+        
+        api_key = request.form.get('APIKey')
+        print(api_key)
+        if api_key != "":
+            # Validate the API Key
+            if not validate_api_key(api_key):
+                return jsonify({"error": "Invalid API Key"}), 401
+            else:
+                client = OpenAI(api_key=api_key)
+        else:
+            client = OpenAI(api_key="")
+        markitdown = MarkItDown(llm_client=client, llm_model="gpt-4o")
 
         file = request.files["file"]
-
-        # Check if a file was uploaded
+        
         if file.filename == "":
             return jsonify({"error": "No selected file"}), 400
 
-        # Validate file extension
-        # if not file.filename.lower().endswith((".pdf", ".ppt", ".pptx", ".docx", ".xls", ".xlsx")):
-        #     return (
-        #         jsonify(
-        #             {
-        #                 "error": "Invalid file type. Supported types are PDF, PPT, PPTX, DOCX, XLS, XLSX."
-        #             }
-        #         ),
-        #         400,
-        #     )
-
         # 生成唯一檔案名稱
         unique_filename = generate_unique_filename(file.stream, file.filename)
-
-        # 定義上傳和輸出路徑
         file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
         output_path = os.path.join(
             OUTPUT_FOLDER, unique_filename.rsplit(".", 1)[0] + ".md"
@@ -104,7 +103,6 @@ def convert_file():
             )
 
         except Exception as conversion_error:
-            # Clean up uploaded file if conversion fails
             if os.path.exists(file_path):
                 os.remove(file_path)
             return (
@@ -123,7 +121,6 @@ def convert_file():
             jsonify({"error": f"An unexpected error occurred: {str(general_error)}"}),
             500,
         )
-
 
 if __name__ == "__main__":
     app.run()
