@@ -5,7 +5,7 @@ import Header from "@/components/index/Header";
 import FileUploadSection from "@/components/index/FileUploadSection";
 import FileContentViewer from "@/components/index/FileContentViewer";
 import APIKeyContainer from "@/components/index/APIKeyContainer";
-import I18nSelector from "@/components/index/i18nSelector";
+import I18nSelector from "@/components/index/I18nSelector";
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -129,9 +129,13 @@ export default function Home() {
             <a href="https://github.com/Dalufishe" className="underline"  target="_blank">
               Dalufishe
             </a>{" "}
-            & CatTimothy. For inquiries, please contact:{" "}
-            <a href="mailto:easonlu@dimotech.com.tw" className="underline" target="_blank">
-              easonlu@dimotech.com.tw
+            &{" "}
+            <a href="https://github.com/CatTimothy" className="underline" target="_blank">
+              CatTimothy
+            </a>
+            . For inquiries, please contact:{" "}
+            <a href="mailto:gridflex87@gmail.com" className="underline" target="_blank">
+              gridflex87@gmail.com
             </a>
           </p>
         </footer>
