@@ -81,11 +81,41 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
       <Head>
-        <title>AnyToText - File to Text Conversion</title>
+        <title>AnyToText - File to Text Conversion Online</title>
         <meta
           name="description"
-          content="Easily convert PDF, PowerPoint, Word, and other files to text using a drag-and-drop interface."
+          content="Convert PDF, PPT, Word, and image files to text easily and accurately with our drag-and-drop tool. Fast, free, and reliable text extraction for everyone."
         />
+        <meta
+          name="keywords"
+          content="PDF to text, PPT to text, Word to text, image to text, file conversion, text extraction, online file converter"
+        />
+        <meta name="author" content="Dalufishe" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="application/ld+json">
+          {`{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Any To Text",
+  "description": "Easily convert PDF, PPT, Word, and image files to text with our drag-and-drop tool. Free, fast, and reliable text extraction for all your needs.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "keywords": [
+    "PDF to text",
+    "PPT to text",
+    "Word to text",
+    "image to text",
+    "file conversion",
+    "text extraction",
+    "online file converter"
+  ]
+}`}
+        </script>
       </Head>
       <Sidebar />
       <main className="flex-1 p-6">
@@ -119,7 +149,7 @@ export default function Home() {
             onCopy={() => navigator.clipboard.writeText(fileContent)}
           />
         )}
-        <footer className="mt-8 text-gray-500 text-sm flex flex-col justify-center items-center">
+        <footer className="mt-8 text-gray-500 text-sm flex flex-col justify-center items-center text-center">
           {/* <p>
             Note: Conversion results may vary for files with complex layouts,
             images, or custom fonts.
@@ -142,11 +172,7 @@ export default function Home() {
               CatTimothy
             </a>
             , designed by{" "}
-            <a
-              href=""
-              className="underline"
-              target="_blank"
-            >
+            <a href="" className="underline" target="_blank">
               2O48
             </a>
             . For inquiries, please report issues or give feedback here:{" "}
@@ -158,6 +184,19 @@ export default function Home() {
               GitHub Issues
             </a>
             . Thanks!
+          </p>
+          <p>
+            Powered by{" "}
+            <a
+              href="https://github.com/microsoft/markitdown"
+              className="underline"
+              target="_blank"
+            >
+              MarkItDown
+            </a>
+            , , an open-source library by Microsoft for converting files like
+            PDFs, Word documents, PowerPoints, images (OCR), and more into
+            Markdown format.
           </p>
         </footer>
       </main>
