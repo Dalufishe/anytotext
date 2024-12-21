@@ -126,17 +126,38 @@ export default function Home() {
           </p> */}
           <p>
             Developed by{" "}
-            <a href="https://github.com/Dalufishe" className="underline"  target="_blank">
+            <a
+              href="https://github.com/Dalufishe"
+              className="underline"
+              target="_blank"
+            >
               Dalufishe
             </a>{" "}
             &{" "}
-            <a href="https://github.com/CatTimothy" className="underline" target="_blank">
+            <a
+              href="https://github.com/CatTimothy"
+              className="underline"
+              target="_blank"
+            >
               CatTimothy
             </a>
-            . For inquiries, please contact:{" "}
-            <a href="mailto:gridflex87@gmail.com" className="underline" target="_blank">
-              gridflex87@gmail.com
+            , designed by{" "}
+            <a
+              href=""
+              className="underline"
+              target="_blank"
+            >
+              2O48
             </a>
+            . For inquiries, please report issues or give feedback here:{" "}
+            <a
+              href="https://github.com/Dalufishe/anytotext/issues"
+              className="underline"
+              target="_blank"
+            >
+              GitHub Issues
+            </a>
+            . Thanks!
           </p>
         </footer>
       </main>
