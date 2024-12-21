@@ -1,5 +1,5 @@
 # AnyToText
-**AnyToText** is an online tool that supports direct conversion of various file formats (such as PDF, Word, PPT, images, and more) into text, offering an user-friendly drag-and-drop interface for easy use.
+**AnyToText** is an online tool that supports direct conversion of various file formats (such as PDF, Word, PPT, images, and more) into text (Markdown), offering an user-friendly drag-and-drop interface for easy use.
 
 ![](/about.png)
 
