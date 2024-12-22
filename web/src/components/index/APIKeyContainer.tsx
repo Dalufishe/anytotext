@@ -16,7 +16,6 @@ const APIKeyContainer: React.FC<APIKeyContainerProps> = ({
   onAPIKeyContainerChange,
 }) => {
   return (
-    <div className="relative">
       <div className="absolute top-0 right-0 text-right w-auto">
         <button className="relative group py-2 px-4 rounded-lg">
           {/* API Key Icon */}
@@ -49,7 +48,6 @@ const APIKeyContainer: React.FC<APIKeyContainerProps> = ({
           </div>
         )}
       </div>
-    </div>
   );
 };
 

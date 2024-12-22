@@ -116,7 +116,9 @@ export default function Home() {
         </script>
       </Head>
       <Sidebar />
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-6 static">
+        {/* anytotext 標題 */}
+        <Header />
         {/* APIKey 元件 */}
         <APIKeyContainer
           isVisible={isVisible}
@@ -125,7 +127,6 @@ export default function Home() {
           onAPIKeyContainerChange={(key: string) => setAPIKey(key)}
         />
         {/* Title */}
-        <Header />
         {/* I18n Selector */}
         {/* <I18nSelector/> */}
         {/* File Upload Section */}
