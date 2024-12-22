@@ -11,9 +11,8 @@ export default function Home() {
   const [complete, setComplete] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [fileContent, setFileContent] = useState("");
+  const [fileContent, setFileContent] = useState<{ id: string; content: any }[]>([]);
   const [APIKey, setAPIKey] = useState("");
-
   // 初始化時從 localStorage 獲取 APIKey
   useEffect(() => {
     const storedKey = localStorage.getItem("APIKey");
@@ -27,15 +26,26 @@ export default function Home() {
     localStorage.setItem("APIKey", APIKey);
   }, [APIKey]);
 
-  const handleFileUpload = (file: File): void => {
+  const handleMultipleFileUpload = (files: File[]): void => {
+    if (files.length > 10) {
+      alert("Please upload less than 10 files at a time.")
+      return;
+    }
     setLoading(true);
     setComplete(false);
     setErrorMessage("");
+    setFileContent([]);
 
-    import("@/utils/upload")
-      .then((module) => module.uploadPDF(file, APIKey))
-      .then((content: string) => {
-        setFileContent(content);
+    const uploadPromises = Array.from(files).map((file) =>
+      import("@/utils/upload").then((module) => module.uploadPDF(file, APIKey))
+    );
+    Promise.all(uploadPromises)
+      .then((contents) => {
+        var tmp: any[] = [];
+        for (var id = 0; id < contents.length; id++){
+          tmp = tmp.concat({id: id.toString(), content: contents[id]})
+        }
+        setFileContent(tmp);
         setLoading(false);
         setComplete(true);
       })
@@ -46,30 +56,26 @@ export default function Home() {
       });
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>): void => {
-    event.preventDefault();
-    const file = event.dataTransfer?.files[0];
-    if (file) handleFileUpload(file);
-  };
-
   const handleButtonClick = (): void => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = "*";
+    fileInput.multiple = true;
     fileInput.onchange = (e: Event) => {
       const target = e.target as HTMLInputElement;
-      const file = target?.files?.[0];
-      if (file) handleFileUpload(file);
+      const files = target?.files;
+      if (files) handleMultipleFileUpload(Array.from(files));
     };
     fileInput.click();
   };
 
-  const handleDownload = (): void => {
-    if (!fileContent) {
+  const handleDownload = (id : string): void => {
+    const downloadContent = fileContent.find((block) => block.id === id)?.content || ""
+    if (!downloadContent) {
       setErrorMessage("No content available for download.");
       return;
     }
-    const blob = new Blob([fileContent], { type: "text/plain" });
+    const blob = new Blob([downloadContent], { type: "text/plain" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "converted_text.txt";
@@ -116,7 +122,7 @@ export default function Home() {
         </script>
       </Head>
       <Sidebar />
-      <main className="flex-1 p-6 static">
+      <main className="flex-1 p-6 relative">
         {/* anytotext 標題 */}
         <Header />
         {/* APIKey 元件 */}
@@ -134,20 +140,26 @@ export default function Home() {
           loading={loading}
           complete={complete}
           onUploadClick={handleButtonClick}
-          onFileDrop={handleDrop}
+          onFileDrop={(files) => handleMultipleFileUpload(Array.from(files))}
         />
         {/* Error Message */}
         {errorMessage && (
           <div className="mt-4 text-errorText">{errorMessage}</div>
         )}
         {/* File Content Viewer */}
-        {fileContent && (
+        {/* {fileContent && (
           <FileContentViewer
             fileContent={fileContent}
             onDownload={handleDownload}
             onCopy={() => navigator.clipboard.writeText(fileContent)}
           />
-        )}
+        )} */}
+        
+        <FileContentViewer
+          contentBlocks={fileContent}
+          onDownload={(id) => {handleDownload(id)}}
+          onCopy={(id) => navigator.clipboard.writeText(fileContent.find((block) => block.id === id)?.content || "")}
+        />
         <footer className="mt-8 text-gray-500 text-sm flex flex-col justify-center items-center text-center">
           {/* <p>
             Note: Conversion results may vary for files with complex layouts,

@@ -5,8 +5,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from markitdown import MarkItDown
 from openai import OpenAI
-
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 16MB
 CORS(app)  # Enable CORS for all routes
 
 UPLOAD_FOLDER = "uploads"
