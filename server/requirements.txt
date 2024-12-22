@@ -5,7 +5,8 @@ mammoth
 markdownify
 pandas
 pdfminer
-pptx
+pdfminer.six
+python-pptx
 puremagic
 requests
 beautifulsoup4
