@@ -22,11 +22,9 @@ export default function Home() {
     }
   }, []);
 
-  // 每當 APIKey 改變時，同步更新到 localStorage
+  // 每當 APIKey 改變時，同步更新到 localStorage，包括空值
   useEffect(() => {
-    if (APIKey) {
-      localStorage.setItem("APIKey", APIKey);
-    }
+    localStorage.setItem("APIKey", APIKey);
   }, [APIKey]);
 
   const handleFileUpload = (file: File): void => {
